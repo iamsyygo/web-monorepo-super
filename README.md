@@ -73,7 +73,7 @@ pnpm add vue-router
 ```json
 {
   "scripts": {
-    "dev": "pnpm start --filter @core/web-vue-simple"
+    "dev": "pnpm --filter @core/web-vue-simple start"
   }
 }
 
@@ -138,7 +138,72 @@ pnpm --filter @core/web-vue-simple add @utils/xxx
 
 ## 📚 基本命令
 
--C, --dir <dir> - 指定工作目录
--F, --filter <filter> - 指定过滤器
 -W 表示安装在全局的 workspace 里， 这样所有 package 都可以共用该文件
 -WD 是 -W -D 的缩写， -D 表示安装在 devDependencies
+...待补充
+
+### 使用 vite 创建项目
+
+```bash
+pnpm create vite web-react-simple --template react-ts
+```
+
+**默认情况下创建的初始化项目依赖都是一些公共的依赖，如：react、react-dom、react-router-dom、typescript 等，已经统一在根目录中安装，所以在子项目中不需要再安装，否则会报错，所以需要删除子项目中的依赖避险重复安装**
+
+```json
+// 修改项目名称
+"name": "@core/web-react-simple",
+
+// react/package.json
+{
+  "dependencies": {
+    - "react": "^17.0.2",
+    - "react-dom": "^17.0.2",
+    - "react-router-dom": "^5.2.0",
+    - "typescript": "^4.2.4"
+  }
+}
+
+// vue/package.json
+{
+  "dependencies": {
+    - "vue": "^3.0.11",
+    - "vue-router": "^4.0.8",
+    - "typescript": "^4.2.4"
+  }
+}
+
+// 根目录 - package.json
+{
+  "dependencies": {
+    + "react": "^18.2.0",
+    + "vue": "^3.2.45",
+    + "react-dom": "^18.2.0"
+  },
+  "dependencies": {
+    + "react": "^17.0.2",
+    + "react-dom": "^17.0.2",
+    + "react-router-dom": "^5.2.0",
+    + "vue": "^3.0.11",
+    + "vue-router": "^4.0.8",
+    + "typescript": "^4.2.4"
+    // ...
+  }
+}
+```
+
+完成后对各个项目进行安装依赖
+如需要安装其他依赖，可以根据情况在根目录或者子项目中安装.
+
+定义根目录下的启动命令
+
+```json
+// 根目录 - package.json
+{
+  "scripts": {
+    "dev:vue:simple": "pnpm --filter @core/web-vue-simple dev"
+
+  - "dev:vue:simple": "pnpm dev --filter @core/web-vue-simple" // 无效?
+  }
+}
+```
