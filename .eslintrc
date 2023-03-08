@@ -1,46 +1,61 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-        "node": true
-    },
-    "root": true,
-    "ignorePatterns": [
-        "node_modules",
-        "**/node_modules",
-        "**/**/node_modules",
-        "dist",
-        "**/dist",
-        "**/**/dist"
-    ],
-    "extends": [
-        "eslint:recommended",
-        "plugin:vue/vue3-essential",
-        "plugin:@typescript-eslint/recommended"
-    ],
-    "overrides": [
-    ],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "root": true,
+  "ignorePatterns": [
+    "node_modules",
+    "**/node_modules",
+    "**/**/node_modules",
+    "dist",
+    "**/dist",
+    "**/**/dist",
+    ".vscode",
+    "**/.vscode",
+    "**/**/.vscode",
+    "public",
+    "**/public",
+    "**/**/public"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:vue/vue3-essential",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "overrides": [],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
     "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "vue",
-        "@typescript-eslint"
-    ],
-    "rules": {
-        "max-lines": [
-                "warn",
-                {
-                    "max": 8
-                }
-            ],
-            "max-params": [
-                "error",
-                {
-                    "max": 3
-                }
-            ]
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
     }
+  },
+  "plugins": ["vue", "react", "@typescript-eslint"],
+  "rules": {
+    "max-lines": [
+      "warn",
+      {
+        "max": 500
+      }
+    ],
+    "max-params": [
+      "error",
+      {
+        "max": 3
+      }
+    ],
+
+    /* TypeScript */
+    "@typescript-eslint/no-explicit-any": "off",
+
+    /* React */
+    "react/react-in-jsx-scope": "off"
+
+    /* Vue */
+  }
 }

@@ -143,8 +143,35 @@ pnpm add eslint -Dw
 
 pnpm add prettier -Dw
 
-pnpm add -Dw @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prettier eslint-plugin-react vite-plugin-eslint vue-eslint-parser eslint-plugin-vue
+# 初始化
+pnpm eslint --init
 ```
+
+默认的配置中 eslint 的 parser 解析器是 @typescript-eslint/parser，但是使用 vue 时项目时，会报错，所以需要修改为 vue-eslint-parser.
+
+```json
+{
++ "parser": "vue-eslint-parser",
+  "parserOptions": {
+  + "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  }
+}
+```
+
+Vue 项目中使用如 class 语法时，会报错，解决办法是在项目目录 ts 配置文件中
+
+```js
+"compilerOptions": {
+   + "types": ["vite/client"]
+  }
+```
+
+React 仅需安装 `eslint-plugin-react`，其他的插件都是通用的，后续需要再补充.
 
 ## 📚 基本命令
 
