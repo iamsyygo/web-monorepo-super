@@ -136,6 +136,16 @@ pnpm --filter @core/web-vue-simple add @utils/xxx
 > 统一在根目录中管理项目规范，如：eslint、prettier、commitlint、husky、lint-staged 等.
 > 这样可以保证所有的子项目都遵循相同的规范.
 
+安装 ESlint
+
+```bash
+pnpm add eslint -Dw
+
+pnpm add prettier -Dw
+
+pnpm add -Dw @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-config-prettier eslint-plugin-prettier eslint-plugin-react vite-plugin-eslint vue-eslint-parser eslint-plugin-vue
+```
+
 ## 📚 基本命令
 
 -W 表示安装在全局的 workspace 里， 这样所有 package 都可以共用该文件
