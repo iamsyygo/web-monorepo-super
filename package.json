@@ -8,7 +8,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue .",
-    "dev:vue:simple": "pnpm --filter @core/web-vue-simple dev"
+    "dev:vue:simple": "pnpm --filter @core/web-vue-simple dev",
+    "dev:react:simple": "pnpm --filter @core/web-react-simple dev"
   },
   "dependencies": {
     "react": "^18.2.0",

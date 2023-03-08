@@ -5,20 +5,7 @@
     "node": true
   },
   "root": true,
-  "ignorePatterns": [
-    "node_modules",
-    "**/node_modules",
-    "**/**/node_modules",
-    "dist",
-    "**/dist",
-    "**/**/dist",
-    ".vscode",
-    "**/.vscode",
-    "**/**/.vscode",
-    "public",
-    "**/public",
-    "**/**/public"
-  ],
+  "ignorePatterns": ["node_modules", "dist", ".vscode", "public", "assets"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
