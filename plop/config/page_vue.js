@@ -1,17 +1,5 @@
-import { readdirSync } from 'fs';
+import { getCoreFolders } from './index.js';
 
-// 获取 core 下的所有文件夹
-const getCoreFolders = (path, includeStr) => {
-  const coreNextDir = readdirSync(path);
-  return coreNextDir.filter((item) => item.startsWith(includeStr));
-};
-
-console.log(
-  getCoreFolders('core', 'web-vue').map((item) => ({
-    title: item,
-    value: `core/${item}`,
-  })),
-);
 export default {
   description: '创建一个新的 vue 页面(page、route、api)',
   prompts: [
