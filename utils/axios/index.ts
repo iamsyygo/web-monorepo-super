@@ -1,8 +1,8 @@
-import axios, { AxiosInstance, AxiosError, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import { IInterceptorHooks, _AxiosRequestConfig } from './type';
+import axios, { AxiosInstance, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import { _AxiosRequestConfig } from './type';
 
 // R：响应数据de类型
-class _Axios<R> {
+class _Axios<R = any> {
   private axios: AxiosInstance;
   constructor(config: _AxiosRequestConfig) {
     // 解构 AxiosRequestConfig 与 ...
@@ -72,4 +72,21 @@ class _Axios<R> {
   get<D = any, T = R>(url: string, config?: _AxiosRequestConfig): Promise<T> {
     return this.request<D, T>({ ...config, url, method: 'GET' });
   }
+  post<D = any, T = R>(url: string, data?: D, config?: _AxiosRequestConfig): Promise<T> {
+    return this.request<D, T>({ ...config, url, method: 'POST', data });
+  }
+  put<D = any, T = R>(url: string, data?: D, config?: _AxiosRequestConfig): Promise<T> {
+    return this.request<D, T>({ ...config, url, method: 'PUT', data });
+  }
+  delete<D = any, T = R>(url: string, config?: _AxiosRequestConfig): Promise<T> {
+    return this.request<D, T>({ ...config, url, method: 'DELETE' });
+  }
+  head<D = any, T = R>(url: string, config?: _AxiosRequestConfig): Promise<T> {
+    return this.request<D, T>({ ...config, url, method: 'HEAD' });
+  }
+  patch<D = any, T = R>(url: string, data?: D, config?: _AxiosRequestConfig): Promise<T> {
+    return this.request<D, T>({ ...config, url, method: 'PATCH', data });
+  }
 }
+
+export default _Axios;

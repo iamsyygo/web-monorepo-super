@@ -244,3 +244,69 @@ pnpm create vite web-react-simple --template react-ts
   }
 }
 ```
+
+
+
+## 🎒 Icon 包管理
+
+> 考虑到多个项目使用到相同的图标，所以这里将 icon 与 svg 图标统一放到 Utils 下进行独立管理生成一个图标库，然后项目中进行安装 icon 包进行使用
+
+1、在 Utils 下创建 monorepo 子项目 icon
+
+`pnpm init`
+
+2、更改项目名称 `@utils/icon`，添加脚本`"build" : "vite build"`
+
+3、创建 `src/icons/svg` 目录用于存放 svg 图标文件
+
+4、将其它的，如：iconfont 下载的文件复制到 `src/icons` 下，对这些文件也进行统一的管理
+
+5、使用 vite 进行打包构建，创建 vite.config.js
+
+6、安装打包依赖`vite-plugin-svg-icons`、`svgo`
+
+```js
+import { defineConfig } from 'vite';
+import * as path from 'path';
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+export default defineConfig({
+  // 打包成单个js库
+  build: {
+    lib: {
+      entry: path.resolve(__dirname, 'src/main.js'),
+      name: 'icon',
+    },
+
+    rollupOptions: {
+      output: {},
+    },
+  },
+  plugins: [
+    createSvgIconsPlugin({
+      // Specify the icon folder to be cached
+      iconDirs: [path.resolve(process.cwd(), 'src/icons/svg')],
+     
+      // Specify symbolId format
+      symbolId: 'icon-[dir]-[name]',
+      /**
+       * custom insert position
+       * @default: body-last
+       */
+      inject: 'body-last',
+
+      /**
+       * custom dom id
+       * @default: __svg__icons__dom__
+       */
+      customDomId: '__svg__icons__dom__',
+    }),
+  ],
+});
+
+```
+
+7、执行 pnpm build
+
+8、在使用的项目中，执行 `pnpm -F 使用的目录名称 add @utils/icons`
+
+9、OKK👌

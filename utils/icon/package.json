@@ -1,0 +1,16 @@
+{
+  "name": "@utils/icon",
+  "version": "1.0.1",
+  "description": "icon 共享包",
+  "main": "dist/icon.mjs",
+  "scripts": {
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "svgo": "3.0.2",
+    "vite-plugin-svg-icons": "2.0.1"
+  }
+}
