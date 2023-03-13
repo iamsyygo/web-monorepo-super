@@ -1,6 +1,6 @@
 {
   "name": "@utils/icon",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "icon 共享包",
   "main": "dist/icon.mjs",
   "scripts": {

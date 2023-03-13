@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import * as path from 'path';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
+import viteCompression from 'vite-plugin-compression';
 export default defineConfig({
   // 打包成单个js库
   build: {
@@ -33,12 +34,21 @@ export default defineConfig({
        * @default: body-last
        */
       inject: 'body-last',
-
+      svgoOptions: true,
       /**
        * custom dom id
        * @default: __svg__icons__dom__
        */
       customDomId: '__svg__icons__dom__',
+    }),
+    viteCompression({
+      verbose: true,
+      disable: false,
+      // filter:()=>{}, // 那些资源不压缩
+      threshold: 1024 * 50, // 体积大于 threshold 才会被压缩,单位 b
+      deleteOriginFile: false, // 压缩后是否删除源文件
+      algorithm: 'gzip', // 压缩算法,可选 [ 'gzip' , 'brotliCompress' ,'deflate' , 'deflateRaw']
+      ext: '.gz', // 生成的压缩包后缀
     }),
   ],
 });
