@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
 <svg width="800px" height="800px" viewBox="-2.5 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M23.2728 0H2.90914C2.10581 0 1.45459 0.651222 1.45459 1.45455V27.6364C1.45459 28.4397 2.10581 29.0909 2.90914 29.0909H23.2728C24.0761 29.0909 24.7273 28.4397 24.7273 27.6364V1.45455C24.7273 0.651222 24.0761 0 23.2728 0Z" fill="url(#paint0_linear_103_1420)"/>
 <path d="M24.7273 2.90906H1.45455C0.651222 2.90906 0 3.56028 0 4.3636V30.5454C0 31.3487 0.651222 32 1.45455 32H24.7273C25.5306 32 26.1818 31.3487 26.1818 30.5454V4.3636C26.1818 3.56028 25.5306 2.90906 24.7273 2.90906Z" fill="url(#paint1_linear_103_1420)"/>
@@ -15,11 +16,11 @@
 </filter>
 <linearGradient id="paint0_linear_103_1420" x1="13.091" y1="24.1817" x2="13.091" y2="-20.5455" gradientUnits="userSpaceOnUse">
 <stop stop-color="#3077DB"/>
-<stop offset="1" stop-color="#67A9F4"/>
+<stop offset="1" stop-color="var(--el-color-primary,#67A9F4)"/>
 </linearGradient>
 <linearGradient id="paint1_linear_103_1420" x1="13.2227" y1="1.7671" x2="13.06" y2="31.9998" gradientUnits="userSpaceOnUse">
-<stop stop-color="#67A9F4"/>
-<stop offset="1" stop-color="#377EE3"/>
+<stop class="svg-dynamic-color" stop-color="var(--el-color-primary,#67A9F4)"/>
+<stop offset="1"  class="svg-dynamic-color"  stop-color="var(--el-color-primary-light-9,#67A9F4)"/>
 </linearGradient>
 </defs>
 </svg>

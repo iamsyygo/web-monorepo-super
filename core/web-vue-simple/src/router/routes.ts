@@ -1,4 +1,8 @@
 /* PLOP_INJECT_ROUTE */
-export default {
+import updateLogRoute from '@/pages/updateLog/route';
+import homePageRoute from '@/pages/homePage/route';
+export default [
   /* PLOP_PROVIDE_ROUTE */
-};
+  updateLogRoute,
+  homePageRoute,
+];

@@ -49,6 +49,12 @@ export default {
       default: true,
       message: '是否需要缓存?',
     },
+    {
+      type: 'confirm',
+      name: 'showMenu',
+      default: true,
+      message: '是否需要显示菜单栏?',
+    },
   ],
   actions(data) {
     // 获取最后一个路径作为页面名称

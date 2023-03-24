@@ -26,9 +26,9 @@ export default {
         type: 'add',
         path: '{{proPath}}/src/router/routes.ts',
         template: `/* PLOP_INJECT_ROUTE */
-export default {
+export default [
     /* PLOP_PROVIDE_ROUTE */
-};`,
+];`,
       },
       {
         type: 'add',
