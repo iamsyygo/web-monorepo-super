@@ -16,13 +16,15 @@
               <el-dropdown-menu>
                 <el-dropdown-item
                   ><d-icon name="conference_call" command="/preData"> </d-icon>
-                  个人信息</el-dropdown-item
+                  <span class="setting-title">个人信息</span></el-dropdown-item
                 >
                 <el-dropdown-item command="/updateLog"
-                  ><d-icon name="planner"> </d-icon>更新日志</el-dropdown-item
+                  ><d-icon name="planner"> </d-icon
+                  ><span class="setting-title">更新日志</span></el-dropdown-item
                 >
                 <el-dropdown-item command="outLogin"
-                  ><d-icon name="key"> </d-icon>退出登录</el-dropdown-item
+                  ><d-icon name="key"> </d-icon
+                  ><span class="setting-title">退出登录</span></el-dropdown-item
                 >
               </el-dropdown-menu>
             </template>
@@ -30,7 +32,9 @@
         </div>
       </div>
     </template>
-    <template #aside>aside</template>
+    <template #aside>
+      <div class="base-app-aside"></div>
+    </template>
     <template #main
       ><router-view v-slot="{ Component }">
         <Transition
@@ -99,5 +103,14 @@ const hanlderClickDropdown = (command: string) => {
     transform: rotate(360deg);
     transition: all 1s ease-in-out;
   }
+}
+.setting-title {
+  margin-left: 3px;
+}
+.base-app-aside {
+  background-color: #71a0f0;
+  width: 100%;
+
+  height: 100%;
 }
 </style>

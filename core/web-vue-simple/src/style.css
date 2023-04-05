@@ -6,7 +6,10 @@
 body {
   box-sizing: border-box;
 }
-
+#app {
+  width: 100vw;
+  height: 100vh;
+}
 .icon {
   width: 1.2em;
   height: 1.2em;
@@ -43,10 +46,38 @@ h5 {
   padding: 0;
 }
 
+/* 点缀铺满背景 */
+.base-app--embe-bg {
+  background: 2px 2px/10px 10px transparent
+    radial-gradient(#d7e0ea 18.75%, transparent 0) repeat;
+}
+/* 纯色 */
+.base-app-bg {
+  background: #f9f8ff !important;
+}
+
 /* ------------------------------------- Element Plus extend CSS --------------------------------------------------- */
 ul.el-dropdown-menu {
   padding: 2.5px;
 }
 .el-dropdown-menu__item:not(.is-disabled):focus {
   border-radius: var(--el-border-radius-base);
+}
+/* 修改默认的padding 20 -> 10 */
+.el-drawer {
+  --el-drawer-padding-primary: var(
+    --el-dialog-padding-primary,
+    10px
+  ) !important;
+}
+.el-drawer__header {
+  /* background-color: #fff; */
+  margin-bottom: 0px !important;
+  /* box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); */
+  /* padding-bottom: var(--el-drawer-padding-primary); */
+  padding-bottom: 0 !important;
+}
+
+.el-card {
+  --el-card-padding: 10px !important;
 }

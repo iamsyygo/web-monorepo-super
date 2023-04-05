@@ -1,4 +1,9 @@
-import { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import {
+  AxiosError,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 
 /**
  * 拦截器 hook, 实例化 _Axios 时传入的参数, 用于拦截请求和响应(没有传入时默认使用全局的）
@@ -9,10 +14,13 @@ import { AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'a
  * @return
  */
 export interface IInterceptorHooks {
-  requestSuccess?: (config: Partial<InternalAxiosRequestConfig>) => InternalAxiosRequestConfig;
+  requestSuccess?: (
+    config: Partial<InternalAxiosRequestConfig>,
+  ) => InternalAxiosRequestConfig;
   requestFail?: (error: any) => any;
   responseSuccess?: (response: AxiosResponse) => AxiosResponse;
-  responseFail?: (error: any) => any;
+  // responseFail?: (error: any) => any;
+  responseFail?: (error: AxiosError) => Promise<never>;
 }
 
 /**
@@ -20,6 +28,7 @@ export interface IInterceptorHooks {
  * @param interceptor 拦截器 hook { requestSuccess, requestFail, responseSuccess, responseFail }
  * @return
  */
-export interface _AxiosRequestConfig extends /* AxiosRequestConfig, */ InternalAxiosRequestConfig {
+export interface _AxiosRequestConfig
+  extends /* AxiosRequestConfig, */ InternalAxiosRequestConfig {
   interceptors?: IInterceptorHooks;
 }

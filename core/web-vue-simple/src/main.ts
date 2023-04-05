@@ -5,7 +5,8 @@ import App from './App.vue';
 import '@utils/icon';
 import router from '@/router';
 import { dIcon } from '@components/vue';
-// import { ids } from '@utils/icon';
+import { ids } from '@utils/icon';
+// console.log(ids);
 
 const app = createApp(App);
 app.use(router);

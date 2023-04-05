@@ -10,6 +10,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:vue/vue3-essential",
+    "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "overrides": [],
@@ -22,7 +23,12 @@
       "jsx": true
     }
   },
-  "plugins": ["vue", "react", "@typescript-eslint"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "plugins": ["vue", "react", "@typescript-eslint", "react-hooks"],
   "rules": {
     "max-lines": [
       "warn",
@@ -39,12 +45,15 @@
 
     /* TypeScript */
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
 
     /* React */
     "react/react-in-jsx-scope": "off",
+    "react/display-name": "off",
 
     /* Vue */
     "vue/multi-word-component-names": "off",
-    "@typescript-eslint/no-unused-vars": "off"
+    "@typescript-eslint/no-unused-vars": "off",
+    "vue/prefer-import-from-vue": "off"
   }
 }

@@ -1,4 +1,9 @@
-import axios, { AxiosInstance, AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import axios, {
+  AxiosInstance,
+  AxiosError,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from 'axios';
 import { _AxiosRequestConfig } from './type';
 
 // R：响应数据de类型
@@ -7,17 +12,24 @@ class _Axios<R = any> {
   constructor(config: _AxiosRequestConfig) {
     // 解构 AxiosRequestConfig 与 ...
     const { interceptors, ...AxiosRequestConfig } = config;
-    const { requestSuccess, requestFail, responseSuccess, responseFail } = interceptors || {};
+    const { requestSuccess, requestFail, responseSuccess, responseFail } =
+      interceptors || {};
 
     this.axios = axios.create(AxiosRequestConfig);
 
     const { request, response } = this.axios.interceptors;
 
     // Use global with no passed arguments
-    request.use(requestSuccess || this.golbalRequestSuccess, requestFail || this.golbalRequestFail);
+    request.use(
+      requestSuccess || this.golbalRequestSuccess,
+      requestFail || this.golbalRequestFail,
+    );
 
     // Use global with no passed arguments
-    response.use(responseSuccess || this.golbalResponseSuccess, responseFail || this.golbalResponseFail);
+    response.use(
+      responseSuccess || this.golbalResponseSuccess,
+      responseFail || this.golbalResponseFail,
+    );
   }
 
   // 全局请求Success拦截器
@@ -42,7 +54,8 @@ class _Axios<R = any> {
   // 接收 _Axios 实例传入的 R 类型，作为默认返回值类型, D 为请求数据的类型
   // 单个方法 _AxiosRequestConfig header 非必传, 修改 requestSuccess 类型
   request<D = any, T = R>(config: Partial<_AxiosRequestConfig>): Promise<T> {
-    const { requestSuccess, requestFail, responseSuccess, responseFail } = config.interceptors || {};
+    const { requestSuccess, requestFail, responseSuccess, responseFail } =
+      config.interceptors || {};
 
     // 单个请求拦截
     // if (requestSuccess) {
@@ -56,6 +69,7 @@ class _Axios<R = any> {
           // 单个响应成功拦截
           if (responseSuccess) {
             res = responseSuccess(res);
+            return res.config?.data;
           }
 
           // 返回 res.data 作为默认返回值，data 为 T 类型(内部处理)，返回 Promise<T> 类型数据
@@ -64,6 +78,7 @@ class _Axios<R = any> {
         .catch((error) => {
           if (responseFail) {
             error = responseFail(error);
+            return Promise.reject(error);
           }
           return Promise.reject(error);
         })
@@ -72,19 +87,34 @@ class _Axios<R = any> {
   get<D = any, T = R>(url: string, config?: _AxiosRequestConfig): Promise<T> {
     return this.request<D, T>({ ...config, url, method: 'GET' });
   }
-  post<D = any, T = R>(url: string, data?: D, config?: _AxiosRequestConfig): Promise<T> {
+  post<D = any, T = R>(
+    url: string,
+    data?: D,
+    config?: _AxiosRequestConfig,
+  ): Promise<T> {
     return this.request<D, T>({ ...config, url, method: 'POST', data });
   }
-  put<D = any, T = R>(url: string, data?: D, config?: _AxiosRequestConfig): Promise<T> {
+  put<D = any, T = R>(
+    url: string,
+    data?: D,
+    config?: _AxiosRequestConfig,
+  ): Promise<T> {
     return this.request<D, T>({ ...config, url, method: 'PUT', data });
   }
-  delete<D = any, T = R>(url: string, config?: _AxiosRequestConfig): Promise<T> {
+  delete<D = any, T = R>(
+    url: string,
+    config?: _AxiosRequestConfig,
+  ): Promise<T> {
     return this.request<D, T>({ ...config, url, method: 'DELETE' });
   }
   head<D = any, T = R>(url: string, config?: _AxiosRequestConfig): Promise<T> {
     return this.request<D, T>({ ...config, url, method: 'HEAD' });
   }
-  patch<D = any, T = R>(url: string, data?: D, config?: _AxiosRequestConfig): Promise<T> {
+  patch<D = any, T = R>(
+    url: string,
+    data?: D,
+    config?: _AxiosRequestConfig,
+  ): Promise<T> {
     return this.request<D, T>({ ...config, url, method: 'PATCH', data });
   }
 }
