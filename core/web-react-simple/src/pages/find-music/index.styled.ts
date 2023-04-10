@@ -4,6 +4,7 @@ import styled from 'styled-components';
 type ITheme = typeof THEME_CONFIG;
 export const FindMusic = styled.div`
   width: 100%;
+  height: calc(100vh - var(--app-header-height));
   .nav-bar-container {
     display: flex;
     justify-content: center;
@@ -13,6 +14,7 @@ export const FindMusic = styled.div`
     line-height: 35px;
     background-color: ${({ theme }: { theme: ITheme }) => theme.colorPrimary};
     user-select: none;
+    z-index: 999;
   }
 
   .nav-bar-item {

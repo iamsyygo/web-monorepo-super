@@ -12,6 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  --app-header-height: 70px;
+  --app-base-margin: 10px;
 }
 *，*::before，*::after {
   box-sizing: border-box;

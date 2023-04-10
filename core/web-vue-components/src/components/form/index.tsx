@@ -17,7 +17,7 @@ import {
   ElSwitch,
 } from 'element-plus';
 // import {} from '@vue/shared';
-import { FormItem, DFormProps, Span, DFormEmits } from './type';
+import { FormItem, Props, Span, DFormEmits } from './type';
 
 export default defineComponent({
   name: 'd-form',
@@ -36,9 +36,11 @@ export default defineComponent({
     ElCheckboxGroup,
     ElSwitch,
   },
-  props: DFormProps,
+  props: Props,
   emits: DFormEmits,
   setup(props, { slots, attrs, emit, expose }) {
+    console.log(slots, 'slots');
+
     const { gutter, spans, formItems, renderFormItem, modelValue } =
       toRefs(props);
     const elformRef = ref<null | FormInstance>(null);
@@ -52,9 +54,6 @@ export default defineComponent({
           }
           return acc;
         }, {} as Record<string, any>);
-        console.log(modelValue, 'value.value');
-
-        console.log(model, 'model');
 
         const proxy = new Proxy(model, {
           set(target, key, value) {
@@ -81,6 +80,7 @@ export default defineComponent({
           if (key.split(',').includes(name)) return key;
         }
       }
+      return '';
     };
     // 获取插槽内容
     const getSlotValue = (name: string) => {
@@ -90,6 +90,22 @@ export default defineComponent({
 
     // 获取默认插槽内容， slot>slot1,slot2,slot3>type>formItems(slot)
     const getDefalutSlot = slots['formItems'];
+
+    // 按钮的插槽
+    const buttonSlotName =
+      hasSlot('button-block') ||
+      hasSlot('button-inline') ||
+      hasSlot('button-right');
+    const buttonSlot =
+      buttonSlotName == 'button-block'
+        ? {
+            prop: buttonSlotName,
+            'label-width': '0px',
+            span: 24,
+          }
+        : buttonSlotName == ''
+        ? []
+        : { prop: buttonSlotName, 'label-width': '0px', span: spans.value };
 
     // 获取表单
     const getFormItem = (item: FormItem) => {
@@ -223,30 +239,30 @@ export default defineComponent({
         model={formModel.value}
       >
         <el-row gutter={gutter.value}>
-          {formItems.value.map((item) => {
+          {formItems.value.concat(buttonSlot).map((item) => {
             // 是否渲染
             if (
               renderFormItem.value &&
               !renderFormItem.value(item, { ...formModel.value })
-            )
+            ) {
               return;
+            }
+
+            // 如果有 required 属性，添加必填校验
+            const required = item.required || props.required;
+            const rules =
+              (Array.isArray(item.rules) && item.rules) || // 返回数组
+              (item.rules && [item.rules]) || // 返回对象
+              [];
+            required &&
+              rules.push({
+                required: true,
+                message: `${item.label}是必填项`,
+              });
 
             return (
               <el-col key={item.prop} {...getSpans(item.span)}>
-                <el-form-item
-                  // required={item.rules || props.required}
-                  {...item}
-                  rules={
-                    item.rules ||
-                    (props.required && [
-                      {
-                        required: true,
-                        message: `${item.label}是必填项`,
-                      },
-                      ...(item.rules || []),
-                    ])
-                  }
-                >
+                <el-form-item {...item} rules={rules}>
                   {getFormItem(item)}
                 </el-form-item>
               </el-col>

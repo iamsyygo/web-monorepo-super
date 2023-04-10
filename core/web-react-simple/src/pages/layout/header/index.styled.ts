@@ -5,7 +5,7 @@ type ITheme = typeof THEME_CONFIG;
 
 export const Header = styled.div`
   width: 100%;
-  height: 70px;
+  height: var(--app-header-height);
   // element-plus 官网导航栏背景色
   background-image: radial-gradient(transparent 1px, #fff 1px);
   backdrop-filter: saturate(50%) blur(4px);
@@ -15,6 +15,8 @@ export const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 999;
 
   // logo
   .logo-container {

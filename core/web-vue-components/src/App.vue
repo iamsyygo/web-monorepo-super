@@ -1,8 +1,17 @@
 <script setup lang="ts">
-import dForm from './components/form';
-import { FormItem } from './components/form/type';
-import { ElConfigProvider } from 'element-plus';
-import zhCn from 'element-plus/dist/locale/zh-cn.mjs';
+import {
+  ElConfigProvider,
+  ElTimeline,
+  ElTimelineItem,
+  ElCard,
+} from 'element-plus';
+import zhCn from 'element-plus/dist/locale/zh-cn';
+
+import DForm from '@/demos/form.vue';
+import DTree from '@/demos/tree.vue';
+import virtual from '@/demos/virtual.vue';
+import DTable from '@/demos/table.vue';
+import type { FormItem } from './components/form/type';
 
 import {
   computed,
@@ -14,68 +23,45 @@ import {
   watch,
   ref,
 } from 'vue';
-import { ElForm, ElFormItem, ElInput, ElRow, ElCol } from 'element-plus';
-const formItems = reactive<FormItem[]>([
-  {
-    prop: 'fullName',
-    label: '姓名',
-  },
-  {
-    prop: 'age',
-    label: '年龄',
-    type: 'textarea',
-  },
-  {
-    prop: 'sex',
-    label: '性别',
-    type: 'input',
-  },
-  {
-    prop: 'address',
-    label: '地址',
-    type: 'input',
-  },
-  {
-    prop: 'dateOfBirth',
-    label: '出生年月',
-    type: 'daterange',
-  },
-]);
-onMounted(() => {});
-let data = ref<any>({
-  fullName: 'aaa',
-  sex: '男',
-});
-const handleReanderFormItem = (formItem: any, model: any) => {
-  return true;
-};
-// const handleData = (val: any) => {
-//   console.log(val);
-//   data.sex = val.sex;
-// };
 </script>
-
 <template>
   <el-config-provider :locale="zhCn">
-    <div>
-      <dForm
-        v-model="data"
-        required
-        label-position="top"
-        :form-items="formItems"
-        :render-form-item="handleReanderFormItem"
-        :spans="{ xl: 6, lg: 8, xs: 12, sm: 12, md: 12 }"
-        label-width="100px"
+    <el-timeline>
+      <el-timeline-item
+        center
+        timestamp="2023-04-10"
+        placement="top"
+        type="primary"
       >
-        <!-- <template #fullName,address="formItem"> aaa {{ formItem }}</template> -->
-        <!-- <template #fullName="formItem"> 333 {{ formItem }}</template> -->
-        <template #formItems="{ formItem, formModel }">
-          <el-input v-model="formModel[formItem.prop]"> </el-input>
-        </template>
-        <!-- <template #dateOfBirth="formItem"> formItems {{ formItem }}</template> -->
-      </dForm>
-    </div>
+        <el-card>
+          <h4># 简单and不简单的表格查询组件</h4>
+          <DTable></DTable>
+        </el-card>
+      </el-timeline-item>
+      <!-- <el-timeline-item timestamp="2023-04-08" placement="top" type="info">
+        <el-card>
+          <h4># 虚拟列表</h4>
+          <virtual></virtual>
+        </el-card>
+      </el-timeline-item>
+
+      <el-timeline-item timestamp="2023-03-26" placement="top" type="success">
+        <el-card>
+          <h3># 表单组件(Form Component)</h3>
+          <DForm />
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item
+        center
+        timestamp="2023-03-01"
+        placement="top"
+        type="warning"
+      >
+        <el-card>
+          <h3># 🌲结构线组件(Tree Component)</h3>
+          <DTree />
+        </el-card>
+      </el-timeline-item> -->
+    </el-timeline>
   </el-config-provider>
 </template>
-
-<style scoped></style>

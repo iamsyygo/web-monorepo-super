@@ -1,0 +1,117 @@
+.app-recommend-container {
+  margin-top: var(--app-base-margin);
+  position: relative;
+  // 35px is 标签栏的高度
+  height: calc(
+    100vh - var(--app-header-height) - 35px - var(--app-base-margin)
+  );
+  display: flex;
+  :global {
+    // 背景图虚化
+    .banner-swiper-virtualization-container {
+      position: absolute;
+      top: -10px;
+      left: -10%;
+      width: 120%;
+      height: 260px;
+      background-size: 100% 100%;
+      background-repeat: no-repeat;
+      filter: blur(56px);
+      transition: all 0.3s;
+    }
+
+    .banner-swiper-container {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      z-index: 1000;
+      width: max(36vw, 500px);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
+    .banner-swiper-item--img {
+      width: 100%;
+    }
+
+    .personal-data-container {
+      text-align: center;
+      width: 310px;
+      border-radius: 12px;
+      // height: 260px;
+      // height: 150px;
+      transition: all 0.3s cubic-bezier(0, 0, 0, 1.1);
+      background: rgba(255, 255, 255, 0.8);
+      position: absolute;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+      right: 10px;
+      z-index: 999;
+
+      .user-avatar {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        margin: 20px auto;
+        background-color: #000;
+        position: absolute;
+        z-index: 99;
+        left: -40px;
+        top: 50%;
+        transform: translateY(-75%);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+
+      h3 {
+        text-align: center;
+        margin: var(--app-base-margin);
+      }
+      .introduce-container {
+        text-align: left;
+        margin: 0 var(--app-base-margin) var(--app-base-margin) 50px;
+      }
+
+      .more-follow-container {
+        width: 100%;
+        overflow: hidden;
+        transition: height 0.3s;
+        padding-left: 10px;
+      }
+
+      .more-user-data {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 3px;
+        width: 70px;
+        height: 6px;
+        background-color: darkgrey;
+        border-radius: 3px;
+        cursor: pointer;
+
+        &:hover {
+          width: 90px;
+          height: 6.5px;
+          transition: all 0.3s;
+        }
+      }
+    }
+
+    .gz-card {
+      width: 68px;
+      color: #000;
+      margin: 10px 0;
+      background-color: #eff1f2;
+      border-radius: 8px;
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+      padding: 5px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+      }
+    }
+  }
+}

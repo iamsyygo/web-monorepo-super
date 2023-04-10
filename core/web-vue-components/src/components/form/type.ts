@@ -36,6 +36,7 @@ export interface IFormOptions {
 }
 
 export type Span = Pick<ColProps, 'xs' | 'sm' | 'md' | 'lg' | 'xl'> | number;
+export type buttonPosition = 'inline' | 'block' | 'right';
 
 export interface FormItem extends Partial<FormItemProps> {
   prop?: string;
@@ -46,11 +47,12 @@ export interface FormItem extends Partial<FormItemProps> {
   span?: Span; // 对象或者数字
   options?: IFormOptions[];
   hidden?: boolean;
+  labelWidth?: number;
 }
 
 export type FormItems = FormItem[];
 
-export const DFormProps = {
+export const Props = {
   ...formProps,
   gutter: {
     type: Number,
@@ -62,7 +64,7 @@ export const DFormProps = {
     // required: true,
   },
   spans: {
-    type: Object as PropType<Span>,
+    type: [Object, Number] as PropType<Span>,
     default: () => ({ xs: 24, sm: 24, md: 24, lg: 24, xl: 24 }),
   },
   modelValue: {
@@ -74,6 +76,10 @@ export const DFormProps = {
     type: Function as PropType<(item: FormItem, model: any) => boolean>,
   },
   required: Boolean,
+  // buttonPosition: {
+  //   type: String as PropType<buttonPosition>,
+  //   default: 'block',
+  // },
 };
 
 export const DFormEmits = {
