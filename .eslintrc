@@ -26,6 +26,12 @@
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "vue": {
+      "version": "detect",
+      "rules": {
+        "react/no-unknown-property": "off"
+      }
     }
   },
   "plugins": ["vue", "react", "@typescript-eslint", "react-hooks"],
@@ -54,6 +60,7 @@
     /* Vue */
     "vue/multi-word-component-names": "off",
     "@typescript-eslint/no-unused-vars": "off",
-    "vue/prefer-import-from-vue": "off"
+    "vue/prefer-import-from-vue": "off",
+    "react/no-unknown-property": "off"
   }
 }

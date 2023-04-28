@@ -11,6 +11,8 @@ import DForm from '@/demos/form.vue';
 import DTree from '@/demos/tree.vue';
 import virtual from '@/demos/virtual.vue';
 import DTable from '@/demos/table.vue';
+import ContextMenus from '@/demos/ContextMenus.vue';
+import PagePro from '@/demos/PagePro.vue';
 import type { FormItem } from './components/form/type';
 
 import {
@@ -34,11 +36,34 @@ import {
         type="primary"
       >
         <el-card>
-          <h4># 简单and不简单的表格查询组件</h4>
+          <h4># 简单and不简单的表格组件</h4>
           <DTable></DTable>
         </el-card>
       </el-timeline-item>
-      <!-- <el-timeline-item timestamp="2023-04-08" placement="top" type="info">
+      <el-timeline-item
+        center
+        timestamp="2023-04-10"
+        placement="top"
+        type="primary"
+      >
+        <el-card>
+          <h4># 简单and不简单的页面组件</h4>
+          <PagePro></PagePro>
+        </el-card>
+      </el-timeline-item>
+
+      <el-timeline-item
+        center
+        timestamp="2023-04-10"
+        placement="top"
+        type="primary"
+      >
+        <el-card>
+          <h4># 右键菜单组件</h4>
+          <ContextMenus></ContextMenus>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item timestamp="2023-04-08" placement="top" type="info">
         <el-card>
           <h4># 虚拟列表</h4>
           <virtual></virtual>
@@ -61,7 +86,7 @@ import {
           <h3># 🌲结构线组件(Tree Component)</h3>
           <DTree />
         </el-card>
-      </el-timeline-item> -->
+      </el-timeline-item>
     </el-timeline>
   </el-config-provider>
 </template>

@@ -1,0 +1,13 @@
+.base-page--search-form {
+  :global {
+    // 让查询表单永远占满一行
+    .el-form-item__content > div.el-input,
+    div.el-select {
+      width: 100%;
+    }
+
+    .el-form-item {
+      margin: 5px auto;
+    }
+  }
+}

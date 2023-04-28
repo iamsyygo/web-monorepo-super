@@ -5,6 +5,8 @@ importers:
   .:
     specifiers:
       '@components/vue': workspace:^1.0.5
+      '@element-plus/icons-vue': 2.1.0
+      '@originjs/vite-plugin-federation': 1.2.2
       '@reduxjs/toolkit': 1.9.3
       '@types/react': ^18.0.27
       '@types/react-dom': ^18.0.10
@@ -49,8 +51,10 @@ importers:
       vue-eslint-parser: 9.1.0
       vue-router: 4.1.6
       vue-tsc: ^1.0.24
+      vuedraggable: 4.1.0
     dependencies:
       '@components/vue': link:components/vue
+      '@element-plus/icons-vue': 2.1.0_vue@3.2.47
       '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
       '@utils/color-scale': link:utils/color-scale
       '@vueuse/core': 9.13.0_vue@3.2.47
@@ -67,7 +71,9 @@ importers:
       styled-components: 5.3.9_7i5myeigehqah43i5u7wbekgba
       vue: 3.2.47
       vue-router: 4.1.6_vue@3.2.47
+      vuedraggable: 4.1.0_vue@3.2.47
     devDependencies:
+      '@originjs/vite-plugin-federation': 1.2.2
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
       '@types/styled-components': 5.1.26
@@ -904,6 +910,14 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: true
+
+  /@originjs/vite-plugin-federation/1.2.2:
+    resolution: {integrity: sha512-XrK782lOdReKjvoeu3xw0q4M4xJpKwcFbDfiLauX0DJf/hwcP3zQ9z83bSIpJglAwrH5ezo+bZfl2/ueWItJfw==}
+    engines: {node: '>=14.0.0', pnpm: '>=7.0.1'}
+    dependencies:
+      estree-walker: 3.0.3
+      magic-string: 0.27.0
     dev: true
 
   /@rc-component/context/1.3.0_biqbaboplfbrettd7655fr4n2y:
@@ -3064,6 +3078,12 @@ packages:
 
   /estree-walker/2.0.2:
     resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
+
+  /estree-walker/3.0.3:
+    resolution: {integrity: sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==}
+    dependencies:
+      '@types/estree': 1.0.0
+    dev: true
 
   /esutils/2.0.3:
     resolution: {integrity: sha512-kVscqXk4OCp68SZ0dkgEKVi6/8ij300KBWTJq32P/dYeWTSwK41WyTxalN1eRmA5Z9UU/LX9D7FWSmV9SAYx6g==}
@@ -6080,6 +6100,10 @@ packages:
       - supports-color
     dev: true
 
+  /sortablejs/1.14.0:
+    resolution: {integrity: sha512-pBXvQCs5/33fdN1/39pPL0NZF20LeRbLQ5jtnheIPN9JQAaufGjKdWduZn4U7wCtVuzKhmRkI0DFYHYRbB2H1w==}
+    dev: false
+
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
@@ -6920,6 +6944,15 @@ packages:
       '@vue/runtime-dom': 3.2.47
       '@vue/server-renderer': 3.2.47_vue@3.2.47
       '@vue/shared': 3.2.47
+
+  /vuedraggable/4.1.0_vue@3.2.47:
+    resolution: {integrity: sha512-FU5HCWBmsf20GpP3eudURW3WdWTKIbEIQxh9/8GE806hydR9qZqRRxRE3RjqX7PkuLuMQG/A7n3cfj9rCEchww==}
+    peerDependencies:
+      vue: ^3.0.1
+    dependencies:
+      sortablejs: 1.14.0
+      vue: 3.2.47
+    dev: false
 
   /watchpack/2.4.0:
     resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==}

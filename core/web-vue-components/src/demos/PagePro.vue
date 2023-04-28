@@ -1,39 +1,31 @@
 <template>
-  <div>
-    <d-form :form-items="formItems" v-model="model" label-width="80" :spans="6">
-      <template #formItems="{ formModel, formItem }">
-        <el-input
-          v-model="formModel[formItem.prop]"
-          placeholder="请输入"
-          clearable
-        ></el-input>
-      </template>
-      <template #button-inline>
-        <ElButton type="primary">查询</ElButton>
-        <ElButton>重置</ElButton>
-      </template>
-      <template #isRequired="{ formModel, formItem }">
-        <el-radio-group v-model="formModel[formItem.prop]">
-          <el-radio-button label="1">是</el-radio-button>
-          <el-radio-button label="0">否</el-radio-button>
-        </el-radio-group>
-      </template>
-    </d-form>
-  </div>
+  <PagePro
+    :search-options="{
+      searchItems: searchitems,
+    }"
+  >
+    <template #search-header="{ model }">{{ model }}</template>
+    <template #search-footer="{ model }">{{ model }}</template>
+
+    <template #button-inline>
+      <ElButton type="primary">查询</ElButton>
+      <ElButton>重置</ElButton>
+    </template>
+  </PagePro>
 </template>
 
 <script setup lang="ts">
-import { ElRadioGroup, ElRadioButton, ElInput, ElButton } from 'element-plus';
-
-import type { FormItem } from '@/components/form/type';
-import DForm from '@/components/form';
+import { ElButton } from 'element-plus';
+import PagePro from '@/components/page-pro/index';
+import type { ISearchItem } from '@/components/page-pro/type';
 import { ref } from 'vue';
 
-const formItems: FormItem[] = [
+const searchitems: ISearchItem[] = [
   {
     label: '属性名',
     prop: 'attrName',
     type: 'input',
+    defaultValue: '无',
   },
 
   {
@@ -75,12 +67,11 @@ const formItems: FormItem[] = [
       },
     ],
   },
-  {
-    label: '默认值',
-    prop: 'default',
-    defaultValue: '无',
-    required: true,
-  },
+  // {
+  //   label: '默认值',
+  //   prop: 'default',
+  //   defaultValue: '无',
+  // },
   {
     label: '可选值',
     prop: 'options',
@@ -121,12 +112,9 @@ const formItems: FormItem[] = [
     prop: 'description',
     type: 'textarea',
     placeholder: '请输入说明',
-    span: { xl: 24, lg: 24, xs: 24, sm: 24, md: 24 },
+    // span: { xl: 24, lg: 24, xs: 24, sm: 24, md: 24 },
   },
 ];
-
-// 使用 ref 能避免在 v-model 中出现引用丢失失去响应的问题
-const model = ref({});
 </script>
 
 <style scoped></style>

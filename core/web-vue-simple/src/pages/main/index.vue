@@ -49,15 +49,19 @@
 </template>
 
 <script setup lang="ts">
-import layout from './layout.vue';
+// import layout from './layout.vue';
 import { useRouter } from 'vue-router';
-const router = useRouter();
+import { defineAsyncComponent } from 'vue';
+// @ts-ignore
+// import remoteApp from 'web-vue-components/App';
+
+// const router = useRouter();
 const hanlderClickDropdown = (command: string) => {
   console.log(command, 'command');
 
-  if (command === '/updateLog') {
-    router.push(command);
-  }
+  // if (command === '/updateLog') {
+  //   router.push(command);
+  // }
 };
 </script>
 

@@ -18,6 +18,8 @@ import {
 } from 'element-plus';
 // import {} from '@vue/shared';
 import { FormItem, Props, Span, DFormEmits } from './type';
+import { getSlotValue, hasSlot } from '@/utils';
+// import moduleCss from './index.module.scss';
 
 export default defineComponent({
   name: 'd-form',
@@ -39,8 +41,6 @@ export default defineComponent({
   props: Props,
   emits: DFormEmits,
   setup(props, { slots, attrs, emit, expose }) {
-    console.log(slots, 'slots');
-
     const { gutter, spans, formItems, renderFormItem, modelValue } =
       toRefs(props);
     const elformRef = ref<null | FormInstance>(null);
@@ -71,31 +71,14 @@ export default defineComponent({
       },
     });
 
-    // 判断插槽是否存在，存在返回插槽名称 key \ k1,k2,k3
-    const hasSlot = (name: string) => {
-      const slotname = slots[name] ? name : '';
-      if (slotname) return name;
-      for (const key in slots) {
-        if (Object.prototype.hasOwnProperty.call(slots, key)) {
-          if (key.split(',').includes(name)) return key;
-        }
-      }
-      return '';
-    };
-    // 获取插槽内容
-    const getSlotValue = (name: string) => {
-      const key = hasSlot(name);
-      return key ? slots[key] : null;
-    };
-
     // 获取默认插槽内容， slot>slot1,slot2,slot3>type>formItems(slot)
     const getDefalutSlot = slots['formItems'];
 
-    // 按钮的插槽
+    // 按钮的插槽 TODO: 待优化...
     const buttonSlotName =
-      hasSlot('button-block') ||
-      hasSlot('button-inline') ||
-      hasSlot('button-right');
+      hasSlot('button-block', slots) ||
+      hasSlot('button-inline', slots) ||
+      hasSlot('button-right', slots);
     const buttonSlot =
       buttonSlotName == 'button-block'
         ? {
@@ -109,7 +92,7 @@ export default defineComponent({
 
     // 获取表单
     const getFormItem = (item: FormItem) => {
-      let result: any = getSlotValue(item.prop || '');
+      let result: any = getSlotValue(item.prop || '', slots);
       if (result) return result({ formItem: item, formModel: formModel.value });
 
       switch (item.type) {
@@ -262,7 +245,11 @@ export default defineComponent({
 
             return (
               <el-col key={item.prop} {...getSpans(item.span)}>
-                <el-form-item {...item} rules={rules}>
+                <el-form-item
+                  {...item}
+                  rules={rules}
+                  // class={moduleCss['base-form-item']}
+                >
                   {getFormItem(item)}
                 </el-form-item>
               </el-col>

@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@components/vue": "workspace:^1.0.5",
+    "@element-plus/icons-vue": "2.1.0",
     "@reduxjs/toolkit": "1.9.3",
     "@utils/color-scale": "workspace:1.0.1",
     "@vueuse/core": "9.13.0",
@@ -29,9 +30,11 @@
     "react-router-dom": "6.9.0",
     "styled-components": "5.3.9",
     "vue": "^3.2.45",
-    "vue-router": "4.1.6"
+    "vue-router": "4.1.6",
+    "vuedraggable": "4.1.0"
   },
   "devDependencies": {
+    "@originjs/vite-plugin-federation": "1.2.2",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/styled-components": "5.1.26",

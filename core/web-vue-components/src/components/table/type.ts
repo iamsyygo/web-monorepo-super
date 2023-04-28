@@ -1,27 +1,46 @@
-import { PropType } from 'vue';
-import { formProps } from 'element-plus';
+import { ExtractPropTypes, PropType } from 'vue';
+import { TableColumnCtx } from 'element-plus';
 
-import { FormItem, Span } from '../form/type';
+import tableProps from 'element-plus/lib/components/table/src/table/defaults.js';
 
-export type ISearchItem = FormItem;
-export type ISearchItems = ISearchItem[];
-export interface SearchOptions {
-  searchItems: ISearchItems;
-  spans?: Span;
-  gutter?: number;
-  labelWidth?: typeof formProps.labelWidth;
-  labelPosition?: typeof formProps.labelPosition;
-  /*
-   * 搜索按钮的位置
-   * inline: 在表单之后
-   * block: 换行, 在表单下面独占一行
-   * right: 在表单右侧, 与表单同行, 若表单占满一行, 则搜索按钮换行
-   */
-  buttonPosition?: 'inline' | 'block' | 'right';
+export type DataItem = Record<string, any>;
+export interface TableItem_prop extends Partial<TableColumnCtx<DataItem>> {
+  //  总是显示，不受控制
+  alwaysDisplay?: boolean;
+  type?: string;
+  prop: string;
+
+  // 含有 type 字段无需 prop 反之必填，为了 使 prop 在 type 不存在时也必填
 }
 
-export const Props = {
-  searchOptions: {
-    type: Object as PropType<SearchOptions>,
+export interface TableItem_type extends Partial<TableColumnCtx<DataItem>> {
+  //  总是显示，不受控制
+  // alwaysDisplay?: boolean;
+  type: string;
+  prop?: string;
+}
+
+export type TableItem = TableItem_prop | TableItem_type;
+
+export type TableColumns = TableItem[];
+
+export const props = {
+  ...tableProps,
+  columns: {
+    type: Array as PropType<TableColumns>,
+    default: () => [],
+  },
+  // 优先级低于 columns
+  showOverflowTooltip: {
+    type: Boolean,
+  },
+  // 表格配置缓存key
+  cacheKey: {
+    type: String,
+  },
+  // 优先级低于 columns
+  sortable: {
+    type: Boolean,
+    default: false,
   },
 };

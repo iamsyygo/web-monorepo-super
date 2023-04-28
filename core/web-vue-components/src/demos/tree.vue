@@ -10,7 +10,9 @@
       }"
     >
       <template #default="{ node, data }">
-        <d-tree :show-line="true" :node="node">{{ data.label }}</d-tree>
+        <d-tree :show-line="true" :node="node" :indent="20">{{
+          data.label
+        }}</d-tree>
       </template>
     </el-tree>
   </div>
