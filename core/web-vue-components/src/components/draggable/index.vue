@@ -2,24 +2,24 @@
 import draggable from 'vuedraggable';
 import { ref } from 'vue';
 import { DCaret } from '@element-plus/icons-vue';
-import { ElIcon, ElCheckbox } from 'element-plus';
+import { ElIcon, ElCheckbox, ElButton } from 'element-plus';
 
-const message = [
-  'vue.draggable',
-  'draggable',
-  'component',
-  'for',
-  'vue.js 2.0',
-  'based',
-  'on',
-  'Sortablejs',
-];
+const props = defineProps({
+  list: {
+    type: Array,
+    default: () => [],
+  },
+});
 
-const list = ref(
-  message.map((name, index) => {
-    return { name, order: index + 1 };
-  }),
+const _list = ref(
+  props.list.map((item: any, index) => ({
+    ...item,
+    itemKey: item.prop + index,
+    show: true,
+  })),
 );
+
+const emits = defineEmits(['dragSubmit']);
 
 const dragOptions = ref({
   animation: 200,
@@ -29,47 +29,54 @@ const dragOptions = ref({
 });
 
 const drag = ref(false);
+
+const handleClick = () => {
+  const list = _list.value.filter((item) => item.show);
+  emits('dragSubmit', list);
+};
 </script>
 
 <template>
   <transition-group>
     <draggable
-      item-key="name"
+      item-key="itemKey"
       key="dragggable"
-      :list="list"
+      v-model="_list"
       v-bind="dragOptions"
       @start="drag = true"
       @end="drag = false"
     >
       <template #item="{ element }">
-        <li :key="element.name">
+        <li :key="element.itemKey">
           <el-checkbox
-            v-model="element.name"
-            :label="element.name"
+            v-model="element.show"
+            :label="element.label"
             size="small"
           />
           <el-icon><DCaret size="10" /></el-icon>
         </li>
       </template>
     </draggable>
+    <el-button type="primary" size="small" @click="handleClick"
+      >确 认</el-button
+    >
   </transition-group>
 </template>
 
 <style scoped lang="scss">
 .drag-transition-container {
+  color: #ccc;
   width: 200px;
   & > li {
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #f4f6f9;
-    margin: 3px auto;
-    padding: 5px 10px;
+    margin: 2px auto;
+    padding: 3px 6px;
     border-radius: 3px;
     cursor: move;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-
-    // 禁止用户选择
     user-select: none;
   }
 }

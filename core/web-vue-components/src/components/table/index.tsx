@@ -41,7 +41,7 @@ export default defineComponent({
           <ElTable {...props} v-slots={elTableSlots}>
             {elTableColumns}
           </ElTable>
-          <Draggable></Draggable>
+          <Draggable list={columns.value}></Draggable>
         </div>
       );
     };
