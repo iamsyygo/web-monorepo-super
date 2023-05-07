@@ -1,0 +1,63 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+
+/* 斑马线 */
+.el-table--striped
+  .el-table__body
+  tr.el-table__row--striped.el-table__row
+  td.el-table__cell {
+  background-color: rgba(var(--el-color-primary-rgb), 0.1);
+}
+
+/* 高亮 */
+.el-table__body tr.current-row.el-table__row {
+  position: relative;
+}
+.el-table__body tr.current-row.el-table__row > td.el-table__cell,
+.el-table--striped
+  .el-table__body
+  tr.el-table__row--striped.current-row.el-table__row
+  td.el-table__cell {
+  background-color: rgba(var(--el-color-primary-rgb), 0.3);
+}
+.el-table__body tr.current-row.el-table__row::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background-color: var(--el-color-primary);
+}
+
+/* 头 */
+.el-table .el-table__header th.el-table__cell {
+  background-color: rgba(var(--el-color-primary-rgb), 0.4);
+  color: var(--el-text-color-regular);
+}
+
+.config-popover-enter-active,
+.config-popover-leave-active {
+  transition: all 0.3s;
+}
+
+.config-popover-enter-from,
+.config-popover-leave-to {
+  opacity: 0;
+  transform: translate(100px, -100px) scale(0.4);
+}
+
+.config-popover-leave-from,
+.config-popover-enter-to {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}

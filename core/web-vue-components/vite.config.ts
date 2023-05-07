@@ -29,5 +29,12 @@ export default defineConfig({
     minify: false,
     target: ['chrome89', 'edge89', 'firefox89', 'safari15'],
   },
-  server: { host: true },
+  server: {
+    host: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3000',
+      },
+    },
+  },
 });

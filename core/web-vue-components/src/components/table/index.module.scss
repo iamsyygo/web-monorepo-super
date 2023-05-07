@@ -1,4 +1,18 @@
 .base-table-pro {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
   :global {
+    .table-pro-config-button {
+      position: absolute;
+      top: 8px;
+      right: 2px;
+      z-index: 1;
+      transition: all 0.3s ease-in-out;
+      cursor: pointer;
+      &:hover {
+        color: var(--el-color-primary);
+      }
+    }
   }
 }

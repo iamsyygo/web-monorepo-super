@@ -1,25 +1,26 @@
 <script setup lang="ts">
 import draggable from 'vuedraggable';
-import { ref } from 'vue';
+import { PropType, ref } from 'vue';
 import { DCaret } from '@element-plus/icons-vue';
-import { ElIcon, ElCheckbox, ElButton } from 'element-plus';
+import { ElIcon, ElCheckbox } from 'element-plus';
 
+interface Item {
+  label?: string;
+  prop?: string;
+  [key: string]: any;
+}
 const props = defineProps({
   list: {
-    type: Array,
+    type: Array as PropType<Item[]>,
     default: () => [],
+  },
+  tickable: {
+    type: Boolean,
+    default: false,
   },
 });
 
-const _list = ref(
-  props.list.map((item: any, index) => ({
-    ...item,
-    itemKey: item.prop + index,
-    show: true,
-  })),
-);
-
-const emits = defineEmits(['dragSubmit']);
+const _list = ref(props.list);
 
 const dragOptions = ref({
   animation: 200,
@@ -29,17 +30,12 @@ const dragOptions = ref({
 });
 
 const drag = ref(false);
-
-const handleClick = () => {
-  const list = _list.value.filter((item) => item.show);
-  emits('dragSubmit', list);
-};
 </script>
 
 <template>
   <transition-group>
     <draggable
-      item-key="itemKey"
+      item-key="prop"
       key="dragggable"
       v-model="_list"
       v-bind="dragOptions"
@@ -47,19 +43,18 @@ const handleClick = () => {
       @end="drag = false"
     >
       <template #item="{ element }">
-        <li :key="element.itemKey">
+        <li :key="element.prop" v-if="!element.type">
           <el-checkbox
+            v-if="tickable"
             v-model="element.show"
             :label="element.label"
             size="small"
           />
+          <span v-else>{{ element.label }}</span>
           <el-icon><DCaret size="10" /></el-icon>
         </li>
       </template>
     </draggable>
-    <el-button type="primary" size="small" @click="handleClick"
-      >确 认</el-button
-    >
   </transition-group>
 </template>
 
@@ -73,11 +68,15 @@ const handleClick = () => {
     justify-content: space-between;
     background-color: #f4f6f9;
     margin: 2px auto;
-    padding: 3px 6px;
+    padding: 2px 6px;
     border-radius: 3px;
     cursor: move;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
     user-select: none;
+
+    & span {
+      color: #636363;
+    }
   }
 }
 </style>

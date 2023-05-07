@@ -35,7 +35,7 @@ import {
         placement="top"
         type="primary"
       >
-        <el-card>
+        <el-card style="background-color: #f6f6f6">
           <h4># 简单and不简单的表格组件</h4>
           <DTable></DTable>
         </el-card>

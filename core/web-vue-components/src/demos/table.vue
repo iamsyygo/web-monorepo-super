@@ -1,6 +1,6 @@
 <template>
-  <div style="background-color: antiquewhite; border: 2px solid red">
-    <DTable :columns="columns" :data="data">
+  <div style="">
+    <DTable :columns="columns" :data="data" state-unique-key="test">
       <!-- <template #header></template> -->
       <template #search-header="{ model }">{{ model }}</template>
       <template #search-footer="{ model }">{{ model }}</template>
@@ -18,44 +18,52 @@ import { ElButton } from 'element-plus';
 import DTable from '@/components/table/index';
 import type { TableColumns } from '@/components/table/type';
 import { ref } from 'vue';
+const data = ref<any[]>([]);
+import axios from 'axios';
+
+axios.get('/api/code-remove/getList').then((res) => {
+  // console.log(res);
+  data.value = (res.data.data.list as any[]).slice(0, 10);
+});
 
 const columns: TableColumns = [
   {
-    label: '属性名',
-    prop: 'attrName',
+    type: 'selection',
+  },
+  {
+    label: '源包名',
+    prop: 'sourcePackage',
   },
 
   {
-    label: '类型',
-    prop: 'type',
+    label: '提交时间',
+    prop: 'pushTime',
   },
   {
-    label: '默认值',
-    prop: 'default',
+    label: '提交人',
+    prop: 'pushUser',
   },
   {
-    label: '可选值',
-    prop: 'options',
+    label: '真实地址',
+    prop: 'realAddress',
   },
   {
-    label: '是否必填',
-    prop: 'isRequired',
+    label: '源IP',
+    prop: 'sourceIp',
   },
   {
-    label: '创建时间',
-    prop: 'createTime',
+    label: '目标IP',
+    prop: 'targetIp',
   },
   {
-    label: '有效期',
-    prop: 'validTime',
+    label: '目标包名',
+    prop: 'targetPackage',
   },
   {
     label: '说明',
     prop: 'description',
   },
 ];
-
-const data = ref([]);
 </script>
 
 <style scoped></style>

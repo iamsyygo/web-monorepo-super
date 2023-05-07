@@ -9,6 +9,7 @@ export interface TableItem_prop extends Partial<TableColumnCtx<DataItem>> {
   alwaysDisplay?: boolean;
   type?: string;
   prop: string;
+  [key: string]: any;
 
   // 含有 type 字段无需 prop 反之必填，为了 使 prop 在 type 不存在时也必填
 }
@@ -18,6 +19,7 @@ export interface TableItem_type extends Partial<TableColumnCtx<DataItem>> {
   // alwaysDisplay?: boolean;
   type: string;
   prop?: string;
+  [key: string]: any;
 }
 
 export type TableItem = TableItem_prop | TableItem_type;
@@ -35,7 +37,7 @@ export const props = {
     type: Boolean,
   },
   // 表格配置缓存key
-  cacheKey: {
+  stateUniqueKey: {
     type: String,
   },
   // 优先级低于 columns
@@ -43,4 +45,19 @@ export const props = {
     type: Boolean,
     default: false,
   },
+
+  // 默认显示多少列
+  defaultShowColumn: {
+    type: Number,
+    default: 6,
+  },
 };
+
+export interface TableConfig {
+  border: boolean;
+  showOverflowTooltip: boolean;
+  columns: TableColumns;
+  size: 'large' | 'small' | 'default';
+  stripe: boolean;
+  highlightCurrentRow: boolean;
+}
