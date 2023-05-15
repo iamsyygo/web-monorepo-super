@@ -45,6 +45,27 @@ h6 {
   color: var(--el-text-color-regular);
 }
 
+// el-message
+.el-message {
+  &[role='alert'] {
+    background-color: #fff;
+    border-color: #fff;
+    box-shadow: var(--el-box-shadow);
+  }
+
+  &.el-message-- {
+    &success,
+    &warning,
+    &error,
+    &info {
+      border-color: #fff;
+      background-color: #fff;
+      box-shadow: var(--el-box-shadow);
+      // role="alert"
+    }
+  }
+}
+
 .config-popover-enter-active,
 .config-popover-leave-active {
   transition: all 0.3s;

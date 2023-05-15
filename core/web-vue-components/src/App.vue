@@ -13,7 +13,11 @@ import virtual from '@/demos/virtual.vue';
 import DTable from '@/demos/table.vue';
 import ContextMenus from '@/demos/ContextMenus.vue';
 import PagePro from '@/demos/PagePro.vue';
-import type { FormItem } from './components/form/type';
+import TickLoading from '@/demos/TickLoading.vue';
+import CardPro from '@/demos/3DCard.vue';
+import MessagePro from '@/demos/MessagePro.vue';
+import SwiperText from '@/demos/SwiperText.vue';
+import TextEffect from '@/demos/TextEffect.vue';
 
 import {
   computed,
@@ -29,6 +33,61 @@ import {
 <template>
   <el-config-provider :locale="zhCn">
     <el-timeline>
+      <el-timeline-item
+        center
+        timestamp="2023-05-15"
+        placement="top"
+        type="primary"
+      >
+        <el-card>
+          <h4># 文字特效</h4>
+          <TextEffect></TextEffect>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item
+        center
+        timestamp="2023-05-14"
+        placement="top"
+        type="primary"
+      >
+        <el-card>
+          <h4># 文字轮播</h4>
+          <SwiperText></SwiperText>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item
+        center
+        timestamp="2023-05-12"
+        placement="top"
+        type="primary"
+      >
+        <el-card>
+          <h4># El-Message 修改</h4>
+          <MessagePro></MessagePro>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item
+        center
+        timestamp="2023-05-12"
+        placement="top"
+        type="primary"
+      >
+        <el-card style="background-color: #dbdbdc">
+          <h4># IOS 卡片</h4>
+          <CardPro></CardPro>
+        </el-card>
+      </el-timeline-item>
+      <el-timeline-item
+        center
+        timestamp="2023-05-12"
+        placement="top"
+        type="primary"
+      >
+        <el-card style="background-color: #eff1f2">
+          <h4># IOS loading 打勾动画</h4>
+          <TickLoading></TickLoading>
+        </el-card>
+      </el-timeline-item>
       <el-timeline-item
         center
         timestamp="2023-04-10"
